@@ -93,6 +93,10 @@ function addTextSection(text)
     // Split individual words into span tags, so that they can be underlined
     // when the user holds down the alt key, and so that they can be individually
     // clicked in order to jump to the source.
+	
+    text = text.replace(new RegExp("<", 'g'), "&lt;");
+    text = text.replace(new RegExp(">", 'g'), "&gt;");
+
     var splitIntoSpans = text.split(" ");
     var textAsSpans = "<span>" + splitIntoSpans.join("</span> <span>") + "</span>";
 
@@ -153,7 +157,12 @@ function addTags(tags)
 
 function addChoice(choice, callback)
 {
-    var $choice = $("<a href='#'>"+choice.text+"</a>");
+    var text = choice.text;
+
+    text = text.replace(new RegExp("<", 'g'), "&lt;");
+    text = text.replace(new RegExp(">", 'g'), "&gt;");
+
+    var $choice = $("<a href='#'>"+text+"</a>");
 
     // Append the choice
     var $choicePara = $("<p class='choice'></p>");
