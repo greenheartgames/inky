@@ -117,7 +117,24 @@ function setupMenus(callbacks) {
           }
         },
         {
-          label: "TODO: zoom controls"
+          label: "Zoom In",
+          accelerator: 'CmdOrCtrl+=',
+          click(item, focusedWindow) {
+            var wc = focusedWindow.webContents;
+            wc.getZoomFactor(function (factor) {
+              wc.setZoomFactor(factor + 0.1);
+            });
+          }
+        },
+        {
+          label: "Zoom Out",
+          accelerator: 'CmdOrCtrl+-',
+          click(item, focusedWindow) {
+            var wc = focusedWindow.webContents;
+            wc.getZoomFactor(function (factor) {
+              wc.setZoomFactor(factor - 0.1);
+            });
+          }
         }
       ]
     },
